@@ -1,6 +1,5 @@
 // Basic ASCI, in-terminal user interface
 
-package ui;
 import java.util.Scanner;
 
 

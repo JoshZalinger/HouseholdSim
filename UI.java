@@ -1,7 +1,5 @@
 // Interface that must be implemented by all user interfaces
 
-package ui;
-
 
 public interface UI {
 

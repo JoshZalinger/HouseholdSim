@@ -1,8 +1,6 @@
 // Main class for the Household Simulation
 
 import java.util.HashMap;
-import ui.UI;
-import ui.TextInterface;
 
 
 public class Simulation {

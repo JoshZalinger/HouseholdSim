@@ -1,7 +1,6 @@
 // The main "controller" object that runs the simulation loop. This class is also equivalent to 'an instance of a simulation'.
 
 import java.util.ArrayList;
-import ui.UI;
 
 
 public class SimulationController {
