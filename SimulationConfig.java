@@ -19,8 +19,16 @@ public class SimulationConfig {
 
 	for(Object key: defaultValues.keySet()) {
 	    String value;
-	    // TODO: first, look for the key in the command args. Next, check the file (if there is one). Finally, use the default value
-	    value = defaultValues.get(key).toString();
+	    // First, look for the key in the command args.
+	    Object commandArg = _commandArguments.get(key);
+	    if (commandArg != null) {
+		value = commandArg.toString();
+	    }
+	    // TODO: look for key in file (if applicable)
+	    else {
+		// Did not find key elsewhere, use default.
+		value = defaultValues.get(key).toString();
+	    }
 
 	    try {
 		int intValue = Integer.parseInt(value);

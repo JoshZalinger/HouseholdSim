@@ -26,13 +26,20 @@ public class Simulation {
 	    ui.simpleMessage("Arguments should be of the form \"--key value\"");
 	    System.exit(0);
 	}
+	HashMap map = new HashMap();
 	for(int i = 0; i < args.length; i += 2) {
 	    String key = args[i];
-	    // TODO: make sure it is formatted correctly
-	    // TODO: add it and the value to the hash map
+	    String value = args[i + 1];
+	    // Make sure it is formatted correctly (i.e. starts with --):
+	    if (key.indexOf("--") != 0) {
+		ui.errorMessage("Argument key poorly formatted: \"" + key + "\"");
+		System.exit(0);
+	    }
+	    key = key.substring(2);
+	    map.put(key, value);
 	}
 
-	return new HashMap();
+	return map;
     } //end
 
 
