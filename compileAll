@@ -1,0 +1,2 @@
+javac ui/*.java
+javac *.java

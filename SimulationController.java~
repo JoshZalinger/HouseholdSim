@@ -1,0 +1,26 @@
+// The main "controller" object that runs the simulation loop. This class is also equivalent to 'an instance of a simulation'.
+
+
+public class SimulationController {
+
+    private UI ui;
+    private SimulationConfig config;
+
+
+    public SimulationController(SimulationConfig _config, UI _ui) {
+	config = _config;
+	ui = _ui;
+    } //end
+
+
+    public void begin() {
+	init();
+	ui.onBegin();
+	while(true) {
+	    // TODO: simulate a turn
+	    ui.onTurnEnd();
+	}
+    } //end
+
+
+} //end class
