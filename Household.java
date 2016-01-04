@@ -9,7 +9,7 @@ public class Household {
 
 
     public Household() {
-	super()
+	super();
 	ai = new DefaultAI(this);
 	remainingLabor = calculateRemainingLabor();
     } //end
@@ -26,8 +26,8 @@ public class Household {
     } //end
 
 
-    public void decrementRemainingLabor() {
-	remainingLabor--;
+    public void decrementRemainingLabor(int n) {
+	remainingLabor -= n;
 	if(remainingLabor < 0) {
 	    System.err.println("ERROR: hhld's remaining labor is below 0");
 	}
