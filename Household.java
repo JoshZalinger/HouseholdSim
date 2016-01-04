@@ -8,6 +8,7 @@ public class Household {
     private AI ai;
 
     private int inventoryMax;
+    private ArrayList<Item> inventoryItems;
 
     private House house;
 
@@ -18,6 +19,17 @@ public class Household {
 	remainingLabor = calculateRemainingLabor();
 	house = new House();
 	inventoryMax = house.getInventorySize();
+	inventoryItems = new ArrayList<Item>()
+    } //end
+
+
+    // returns true if item added to inventory successfully.
+    public bool addToInventory(Item item) {
+	if item.getSize() > getInventoryFree() {
+		return false;
+	    }
+	inventoryItems.add(item);
+	return true;
     } //end
 
 
@@ -47,6 +59,26 @@ public class Household {
 
     public AI getAI() {
 	return ai;
+    } //end
+
+
+    public int getInventoryMax() {
+	return inventoryMax;
+    } //end
+
+
+    public int getInventoryUsed() {
+	return inventoryItems.size();
+    } //end
+
+
+    public int getInventoryFree() {
+	return inventoryMax - inventoryItems.size();
+    } //end
+
+
+    public ArrayList<Item> getInventoryItems() {
+	return inventoryItems;
     } //end
 
 
