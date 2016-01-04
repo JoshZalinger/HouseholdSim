@@ -10,7 +10,7 @@ public class DefaultAI extends AI {
 
 
     public Action takeAction() {
-	return new Action();
+	return new Action(ActionType.END_TURN);
     } //end takeAction
 
 

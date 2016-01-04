@@ -43,11 +43,14 @@ public class SimulationController {
 	while(householdsCopy.size() > 0) {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
-	    while(hhld.getRemainingLabor() > 0) {
-		if(applyAction(hhld, hhld.getAI().takeAction())) {
+	    while(true) {
+		Action action = hhld.getAI().takeAction();
+		if (action.getLaborCost() > hhld.getRemainingLabor()) {
+		    System.err.println("ERROR: household attempted to use above max labor in a turn.");
+		}
+		else if(applyAction(hhld, hhld.getAI().takeAction())) {
 		    break;
 		}
-		hhld.decrementRemainingLabor();
 	    }
 	    // TODO: apply mechanics (e.g. hunger) to the hhld
 	    hhld.resetRemainingLabor();
@@ -57,6 +60,7 @@ public class SimulationController {
 
     private boolean applyAction(Household _hhld, Action _action) {
 	// Applies a household's action, return true if household's turn should end immediately.
+	_hhld.decrementRemainingLabor(_action.getLaborCost());
 	return false;
     } //end
 
