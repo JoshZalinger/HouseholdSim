@@ -7,11 +7,17 @@ public class Household {
     private int remainingLabor; //this turn
     private AI ai;
 
+    private int inventoryMax;
+
+    private House house;
+
 
     public Household() {
-	super()
+	super();
 	ai = new DefaultAI(this);
 	remainingLabor = calculateRemainingLabor();
+	house = new House();
+	inventoryMax = house.getInventorySize();
     } //end
 
 
