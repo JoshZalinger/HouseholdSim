@@ -10,6 +10,7 @@ public class SimulationConfig {
     static {
 	defaultValues = new HashMap();
 	defaultValues.put("population", 100);
+	defaultValues.put("humanuser", false);
     } //end static block
 
 
@@ -35,7 +36,12 @@ public class SimulationConfig {
 		values.put(key, intValue);
 	    }
 	    catch(NumberFormatException e) {
-		values.put(key, value);
+		if (Boolean.parseBoolean(value) || value.toLowerCase().trim().equals("false")) {
+		    values.put(key, Boolean.valueOf(value));
+		}
+		else {
+		    values.put(key, value);
+		}
 	    }
 	}
 
@@ -46,6 +52,11 @@ public class SimulationConfig {
     public int getPopulation() {
 	return ((Integer)values.get("population")).intValue();
     } //end
+
+
+    public boolean isHumanUser() {
+	return ((Boolean)values.get("humanuser")).booleanValue();
+    } //end isHumanUser
 
 
 } //end
