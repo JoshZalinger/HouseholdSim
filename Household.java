@@ -1,4 +1,5 @@
 // Actor within the simulation.
+import java.util.*;
 
 
 public class Household {
@@ -10,6 +11,8 @@ public class Household {
     private int inventoryMax;
     private ArrayList<Item> inventoryItems;
 
+    private int hunger;
+
     private House house;
 
 
@@ -19,13 +22,13 @@ public class Household {
 	remainingLabor = calculateRemainingLabor();
 	house = new House();
 	inventoryMax = house.getInventorySize();
-	inventoryItems = new ArrayList<Item>()
+	inventoryItems = new ArrayList<Item>();
     } //end
 
 
     // returns true if item added to inventory successfully.
     public bool addToInventory(Item item) {
-	if item.getSize() > getInventoryFree() {
+	if (getInventoryFree() < 1) {
 		return false;
 	    }
 	inventoryItems.add(item);
@@ -79,6 +82,16 @@ public class Household {
 
     public ArrayList<Item> getInventoryItems() {
 	return inventoryItems;
+    } //end
+
+
+    public int getHunger() {
+	return hunger;
+    } //end
+
+
+    public void setHunger(int h) {
+	hunger = h;
     } //end
 
 
