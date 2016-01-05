@@ -12,6 +12,8 @@ public class Household {
     private ArrayList<Item> inventoryItems;
 
     private int hunger;
+    private HashMap<Vitamin, int> vitaminMap;
+    private int[3] vitaminStats;
 
     private House house;
 
@@ -23,6 +25,12 @@ public class Household {
 	house = new House();
 	inventoryMax = house.getInventorySize();
 	inventoryItems = new ArrayList<Item>();
+
+	//initialize hashmap for vitamin enum -> array index
+	vitaminMap = new HashMap<Vitamin, int>();
+	vitaminMap.put(VITAMIN_A, 0)
+	vitaminMap.put(VITAMIN_B, 1)
+	vitaminMap.put(VITAMIN_C, 2)
     } //end
 
 
@@ -92,6 +100,16 @@ public class Household {
 
     public void setHunger(int h) {
 	hunger = h;
+    } //end
+
+
+    public int getVitaminStat(Vitamin v) {
+	return vitaminStats[vitaminMap.get(v)];
+    } //end
+
+
+    public void setVitaminStat(Vitamin v) {
+	vitaminStats[vitaminMap.get(v)] = v;
     } //end
 
 
