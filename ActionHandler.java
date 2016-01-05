@@ -13,10 +13,10 @@ public class ActionHandler {
 	    if (item == null) {
 		return "ActionHandler error for EAT action: no associated item.";
 	    }
-	    if (item instanceof Food) {
+	    if (!(item instanceof Food)) {
 		return "ActionHandler error for EAT action: item is not food.";
 	    }
-	    if (_hhld.hasItem(item)) {
+	    if (!(_hhld.hasItem(item))) {
 		return "ActionHandler error for EAT action: no such item in hhld inventory.";
 	    }
 	    if (_hhld.getHunger() <= 0) {
