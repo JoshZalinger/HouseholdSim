@@ -8,6 +8,23 @@ public class ActionHandler {
 	// Return an error string if action is invalid, or null if it is valid
 	switch(_action.getActionType()) {
 
+	case EAT:
+	    Item item = _action.getItem();
+	    if (item == null) {
+		return "ActionHandler error for EAT action: no associated item.";
+	    }
+	    if (item instanceof Food) {
+		return "ActionHandler error for EAT action: item is not food.";
+	    }
+	    if (_hhld.hasItem(item)) {
+		return "ActionHandler error for EAT action: no such item in hhld inventory.";
+	    }
+	    if (_hhld.getHunger() <= 0) {
+		return "ActionHandler error for EAT action: hhld has 0 hunger.";
+	    }
+	    _hhld.decrementHunger();
+	    _hhld.removeItem(item);
+	    return null;
 	case END_TURN:
 	    return null;
 
