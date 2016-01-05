@@ -3,7 +3,8 @@
 
 public enum ActionType {
 
-    END_TURN(0);
+    END_TURN(0),
+    EAT(0);
 
 
 

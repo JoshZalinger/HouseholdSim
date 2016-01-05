@@ -60,8 +60,14 @@ public class SimulationController {
 
     private boolean applyAction(Household _hhld, Action _action) {
 	// Applies a household's action, return true if household's turn should end immediately.
+	String error = ActionHandler.validateAction(_hhld, _action, this);
+	if(error != null) {
+	    ui.errorMessage(error);
+	    return false;
+	}
+	boolean endTurn = ActionHandler.applyAction(_hhld, _action, this);
 	_hhld.decrementRemainingLabor(_action.getLaborCost());
-	return false;
+	return endTurn;
     } //end
 
 
