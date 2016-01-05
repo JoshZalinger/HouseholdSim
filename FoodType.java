@@ -9,8 +9,8 @@ public enum FoodType {
     private String name;
 
 
-    FoodType(String name_) {
-	name = name_;
+    FoodType(String _name) {
+	name = _name;
     } //end
 
 

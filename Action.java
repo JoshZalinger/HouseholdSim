@@ -4,6 +4,7 @@
 public class Action {
 
     private ActionType actionType;
+    private Item item;
 
 
     public Action(ActionType _type) {
@@ -19,6 +20,16 @@ public class Action {
     public ActionType getActionType() {
 	return actionType;
     } //end getActionType
+
+
+    public Item getItem() {
+	return item;
+    } //end
+
+
+    public void setItem(Item _item) {
+	item = _item;
+    } //end
 
 
 } //end class
