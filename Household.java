@@ -27,7 +27,7 @@ public class Household {
 
 
     // returns true if item added to inventory successfully.
-    public bool addToInventory(Item item) {
+    public boolean addToInventory(Item item) {
 	if (getInventoryFree() < 1) {
 		return false;
 	    }

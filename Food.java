@@ -7,8 +7,8 @@ public class Food extends Item {
 
 
     public Food(FoodType type_) {
+	super(type_.getName(), 1);
 	type = type_;
-	super(type.getName(), 1);
     } //end
 
 
