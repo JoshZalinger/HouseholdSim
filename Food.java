@@ -12,4 +12,9 @@ public class Food extends Item {
     } //end
 
 
+    public FoodType getFoodType() {
+	return type;
+    } //end
+
+
 } //end class

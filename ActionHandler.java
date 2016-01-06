@@ -22,8 +22,7 @@ public class ActionHandler {
 	    if (_hhld.getHunger() <= 0) {
 		return "ActionHandler error for EAT action: hhld has 0 hunger.";
 	    }
-	    _hhld.decrementHunger();
-	    _hhld.removeItem(item);
+	    _hhld.eat((Food)item);
 	    return null;
 	case END_TURN:
 	    return null;

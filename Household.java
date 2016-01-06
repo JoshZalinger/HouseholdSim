@@ -45,6 +45,19 @@ public class Household {
     } //end
 
 
+    // note: does not validate on its own
+    public void eat(Food food) {
+	int index;
+	for (Vitamin vit : Vitamin.values()) {
+	    index = vitaminMap.get(vit);
+	    vitaminStats[index] += food.getFoodType().getVitaminStat(vit);
+	}
+
+	decrementHunger();
+	removeItem(food);
+    } //end
+
+
     private int calculateRemainingLabor() {
 	// TODO: consider housing, etc
 	return BASE_LABOR;
