@@ -3,15 +3,15 @@
 
 public abstract class AI {
 
-    private Household household;
-
-
-    public AI(Household _hhld) {
-	household = _hhld;
-    } //end
+    protected Household household;
 
 
     public abstract Action takeAction();
+
+
+    public void setOwner(Household _hhld) {
+	household = _hhld;
+    } //end
 
 
 } //end interface

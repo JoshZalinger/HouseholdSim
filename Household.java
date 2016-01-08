@@ -18,9 +18,10 @@ public class Household {
     private House house;
 
 
-    public Household() {
+    public Household(AI _ai) {
 	super();
-	ai = new DefaultAI(this);
+	ai = _ai;
+	ai.setOwner(this);
 	remainingLabor = calculateRemainingLabor();
 	house = new House();
 	inventoryMax = house.getInventorySize();

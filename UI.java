@@ -4,16 +4,19 @@
 public interface UI {
 
 
-    public void simpleMessage(String message);
+    public void simpleMessage(String _message);
 
 
-    public void errorMessage(String message);
+    public void errorMessage(String _message);
 
 
     public void onBegin();
 
 
     public void onTurnEnd();
+
+
+    public Action promptForHouseholdAction(Household _hhld);
 
 
 } //end interface

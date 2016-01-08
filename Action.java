@@ -12,6 +12,15 @@ public class Action {
     } //end
 
 
+    public static Action parse(String _actionString) {
+	ActionType parsedType = ActionType.parse(_actionString);
+	if (parsedType != null) {
+	    return new Action(parsedType);
+	}
+	return null;
+    } //end
+
+
     public int getLaborCost() {
 	return actionType.getLaborCost();
     } //end

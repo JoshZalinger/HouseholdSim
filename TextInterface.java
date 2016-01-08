@@ -33,4 +33,18 @@ public class TextInterface implements UI {
     } //end
 
 
+    public Action promptForHouseholdAction(Household _hhld) {
+	while(true) {
+	    System.out.print("> ");
+	    String rawCommand = kb.nextLine().trim().toLowerCase();
+	    Action action = Action.parse(rawCommand);
+	    if (action != null) {
+		// TODO: validate the command
+		return action;
+	    }
+	    simpleMessage("Invalid command");
+	}
+    } //end
+
+
 } //end class

@@ -5,24 +5,23 @@ import java.util.ArrayList;
 
 public class SimulationController {
 
-    private UI ui;
     private SimulationConfig config;
     private ArrayList<Household> households;
+    private int turnNumber;
 
 
-    public SimulationController(SimulationConfig _config, UI _ui) {
+    public SimulationController(SimulationConfig _config) {
 	config = _config;
-	ui = _ui;
 	households = new ArrayList<Household>();
     } //end
 
 
     public void begin() {
 	init();
-	ui.onBegin();
+	Simulation.ui.onBegin();
 	while(true) {
 	    doTurn();
-	    ui.onTurnEnd();
+	    Simulation.ui.onTurnEnd();
 	}
     } //end
 
@@ -31,15 +30,24 @@ public class SimulationController {
 	//Create all the households:
 	int pop = config.getPopulation();
 	for(int i = 0; i < pop; i++) {
-	    Household hhld = new Household();
+	    AI ai;
+	    if (i == 0 && config.isHumanUser()) {
+		ai = new HumanUserAI();
+	    }
+	    else {
+		ai = new DefaultAI();
+	    }
+	    Household hhld = new Household(ai);
 	    households.add(hhld);
 	}
+	turnNumber = 0;
     } //end
 
 
     private void doTurn() {
 	ArrayList<Household> householdsCopy = new ArrayList<Household>();
 	householdsCopy.addAll(households);
+	Simulation.ui.simpleMessage("Turn " + turnNumber);
 	while(householdsCopy.size() > 0) {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
@@ -48,13 +56,14 @@ public class SimulationController {
 		if (action.getLaborCost() > hhld.getRemainingLabor()) {
 		    System.err.println("ERROR: household attempted to use above max labor in a turn.");
 		}
-		else if(applyAction(hhld, hhld.getAI().takeAction())) {
+		else if(applyAction(hhld, action)) {
 		    break;
 		}
 	    }
 	    // TODO: apply mechanics (e.g. hunger) to the hhld
 	    hhld.resetRemainingLabor();
 	}
+	turnNumber++;
     } //end doTurn
 
 
@@ -62,7 +71,7 @@ public class SimulationController {
 	// Applies a household's action, return true if household's turn should end immediately.
 	String error = ActionHandler.validateAction(_hhld, _action, this);
 	if(error != null) {
-	    ui.errorMessage(error);
+	    Simulation.ui.errorMessage(error);
 	    return false;
 	}
 	boolean endTurn = ActionHandler.applyAction(_hhld, _action, this);
