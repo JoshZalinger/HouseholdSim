@@ -1,6 +1,7 @@
 // The main "controller" object that runs the simulation loop. This class is also equivalent to 'an instance of a simulation'.
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SimulationController {
@@ -8,11 +9,11 @@ public class SimulationController {
     private SimulationConfig config;
     private ArrayList<Household> households;
     private int turnNumber;
+    private HashMap<JobType, PublicJobSource> publicJobs;
 
 
     public SimulationController(SimulationConfig _config) {
 	config = _config;
-	households = new ArrayList<Household>();
     } //end
 
 
@@ -29,6 +30,7 @@ public class SimulationController {
     private void init() {
 	//Create all the households:
 	int pop = config.getPopulation();
+	households = new ArrayList<Household>();
 	for(int i = 0; i < pop; i++) {
 	    AI ai;
 	    if (i == 0 && config.isHumanUser()) {
@@ -40,7 +42,11 @@ public class SimulationController {
 	    Household hhld = new Household(ai);
 	    households.add(hhld);
 	}
+
 	turnNumber = 0;
+
+	publicJobs = new HashMap<JobType, PublicJobSource>();
+	publicJobs.put(JobType.FORAGE, new PublicJobSource(JobType.FORAGE, config.getForageJobSlots()));
     } //end
 
 

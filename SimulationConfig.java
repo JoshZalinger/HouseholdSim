@@ -11,6 +11,7 @@ public class SimulationConfig {
 	defaultValues = new HashMap();
 	defaultValues.put("population", 100);
 	defaultValues.put("humanuser", false);
+	defaultValues.put("foragejobslots", 100);
     } //end static block
 
 
@@ -57,6 +58,11 @@ public class SimulationConfig {
     public boolean isHumanUser() {
 	return ((Boolean)values.get("humanuser")).booleanValue();
     } //end isHumanUser
+
+
+    public int getForageJobSlots() {
+	return ((Integer)values.get("foragejobslots")).intValue();
+    } //end getForageJobSlots
 
 
 } //end

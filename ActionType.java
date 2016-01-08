@@ -4,7 +4,8 @@
 public enum ActionType {
 
     END_TURN(0, "end turn"),
-    EAT(0, "eat");
+    EAT(0, "eat"),
+    PUBLIC_JOB(1, "public job"); //TODO labor cost should depend on job type?
 
 
 
