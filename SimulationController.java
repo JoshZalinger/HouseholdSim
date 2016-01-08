@@ -62,6 +62,7 @@ public class SimulationController {
 	    }
 	    // TODO: apply mechanics (e.g. hunger) to the hhld
 	    hhld.resetRemainingLabor();
+	    hhld.updateStarvation();
 	}
 	turnNumber++;
     } //end doTurn

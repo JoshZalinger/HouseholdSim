@@ -11,7 +11,8 @@ public class Household {
     private int inventoryMax;
     private ArrayList<Item> inventoryItems;
 
-    private int hunger;
+    private int hunger; // hunger counts down as food is eaten
+    private int starvation; // starvation counts up as meals are missed
     private HashMap<Vitamin, Integer> vitaminMap;
     private int[] vitaminStats;
 
@@ -65,11 +66,6 @@ public class Household {
     } //end
 
 
-    public int getRemainingLabor() {
-	return remainingLabor;
-    } //end
-
-
     public void decrementRemainingLabor(int n) {
 	remainingLabor -= n;
 	if(remainingLabor < 0) {
@@ -80,6 +76,24 @@ public class Household {
 
     public void resetRemainingLabor() {
 	remainingLabor = calculateRemainingLabor();
+    } //end
+
+
+    public void updateStarvation() {
+	if (hunger > 0) {
+	    starvation += hunger;
+	}
+	else if (starvation > 0) {
+	    starvation--;
+	}
+    } //end
+
+
+    /////////////////////////////
+    //   Getters and Setters   //
+    /////////////////////////////
+    public int getRemainingLabor() {
+	return remainingLabor;
     } //end
 
 
@@ -143,6 +157,16 @@ public class Household {
 
     public void setVitaminStat(Vitamin v, int value) {
 	vitaminStats[vitaminMap.get(v)] = value;
+    } //end
+
+
+    public int getStarvation() {
+	return starvation;
+    } //end
+
+
+    public void setStarvation(int _starvation) {
+	starvation = _starvation;
     } //end
 
 
