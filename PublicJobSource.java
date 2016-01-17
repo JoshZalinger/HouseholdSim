@@ -20,4 +20,18 @@ public class PublicJobSource {
     } //end
 
 
+    public void claimSlot() {
+	if (currentOpenSlots == 0) {
+	    System.err.println("ERROR: tried to claim public job slot when none were open (" + jobType + ")");
+	    return;
+	}
+	currentOpenSlots--;
+    } //end claimSlot
+
+
+    public void onEndTurn() {
+	currentOpenSlots = maxSlots;
+    } //end
+
+
 } //end class
