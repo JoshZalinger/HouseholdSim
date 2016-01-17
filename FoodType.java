@@ -4,7 +4,7 @@ import java.util.*;
 
 public enum FoodType {
 
-    CORN("Corn", 0, 0, 0);
+    CORN("corn", 0, 0, 0);
 
 
     private String name;
@@ -26,6 +26,16 @@ public enum FoodType {
 	vitaminStats[0] = _vitA;
 	vitaminStats[1] = _vitB;
 	vitaminStats[2] = _vitC;
+    } //end
+
+
+    public static FoodType parse(String _name) {
+	for (FoodType fo: values()) {
+	    if (fo.toString().equals(_name)) {
+		return fo;
+	    }
+	}
+	return null;
     } //end
 
 

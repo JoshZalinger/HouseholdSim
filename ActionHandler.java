@@ -17,7 +17,8 @@ public class ActionHandler {
 	    if (!(item instanceof Food)) {
 		return "ActionHandler error for EAT action: item is not food.";
 	    }
-	    if (!(_hhld.hasItem(item))) {
+	    item = _hhld.getItem(item);
+	    if (item == null) {
 		return "ActionHandler error for EAT action: no such item in hhld inventory.";
 	    }
 	    if (_hhld.getHunger() <= 0) {
