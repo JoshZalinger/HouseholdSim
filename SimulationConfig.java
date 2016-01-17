@@ -13,6 +13,7 @@ public class SimulationConfig {
 	defaultValues.put("humanuser", false);
 	defaultValues.put("foragejobslots", 800);
 	defaultValues.put("foragechance", 0.5);
+	defaultValues.put("foragefoodtype", "corn");
     } //end static block
 
 
@@ -74,6 +75,11 @@ public class SimulationConfig {
 
     public double getForageChance() {
 	return ((Double)values.get("foragechance")).doubleValue();
+    } //end
+
+
+    public FoodType getForageFoodType() {
+	return FoodType.parse(values.get("foragefoodtype").toString());
     } //end
 
 
