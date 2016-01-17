@@ -66,10 +66,15 @@ public class SimulationController {
 		    break;
 		}
 	    }
-	    // TODO: apply mechanics (e.g. hunger) to the hhld
 	    hhld.resetRemainingLabor();
 	    hhld.updateStarvation();
 	}
+
+	// Reset all public job slots.
+	for(PublicJobSource jobSource: publicJobs.values()) {
+	    jobSource.onEndTurn();
+	}
+
 	turnNumber++;
     } //end doTurn
 
@@ -91,6 +96,16 @@ public class SimulationController {
 	PublicJobSource jobSource = publicJobs.get(_jobType);
 	return jobSource != null && jobSource.getCurrentOpenSlots() > 0;
     } //end
+
+
+    public void claimPublicJobSlot(JobType _jobType) {
+	publicJobs.get(_jobType).claimSlot();
+    } //end
+
+
+    public SimulationConfig getConfig() {
+	return config;
+    } //end getConfig
 
 
 } //end class

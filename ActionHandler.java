@@ -36,6 +36,7 @@ public class ActionHandler {
 	    if (!_controller.hasPublicJobSlot(jobType)) {
 		return "ActionHandler error for " + _action.getActionType() + " action: no open job slot for " + jobType;
 	    }
+	    // TODO: make sure hhld's inventory is not full
 	    return null;
 
 	case END_TURN:
@@ -51,11 +52,36 @@ public class ActionHandler {
 	// Returns 'true' if turn should end after this action
 	switch(_action.getActionType()) {
 
+	    // ================= END TURN ==================
 	case END_TURN:
 	    return true;
 
+	    // ================= PUBLIC JOB =================
+	case PUBLIC_JOB:
+	    JobType jobType = _action.getJobType();
+	    _controller.claimPublicJobSlot(jobType);
+	    return ActionHandler.applyJobType(_hhld, jobType, _controller);
+
 	default:
 	    System.err.println("ERROR: ActionHandler could not apply action of type " + _action.getActionType());
+	    return false;
+	}
+    } //end
+
+
+    private static boolean applyJobType(Household _hhld, JobType _jobType, SimulationController _controller) {
+	// Returns 'true' if turn should end after this action.
+	switch(_jobType) {
+
+	case FORAGE:
+	    double r = Math.random();
+	    if (r < _controller.getConfig().getForageChance()) {
+		_hhld.addToInventory(new Food(FoodType.CORN));
+	    }
+	    return false;
+
+	default:
+	    System.err.println("ERROR: ActionHandler could not apply job type " + _jobType);
 	    return false;
 	}
     } //end

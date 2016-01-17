@@ -12,6 +12,7 @@ public class SimulationConfig {
 	defaultValues.put("population", 100);
 	defaultValues.put("humanuser", false);
 	defaultValues.put("foragejobslots", 800);
+	defaultValues.put("foragechance", 0.5);
     } //end static block
 
 
@@ -37,11 +38,17 @@ public class SimulationConfig {
 		values.put(key, intValue);
 	    }
 	    catch(NumberFormatException e) {
-		if (Boolean.parseBoolean(value) || value.toLowerCase().trim().equals("false")) {
-		    values.put(key, Boolean.valueOf(value));
+		try {
+		    double d = Double.parseDouble(value);
+		    values.put(key, d);
 		}
-		else {
-		    values.put(key, value);
+		catch(NumberFormatException e2) {
+		    if (Boolean.parseBoolean(value) || value.toLowerCase().trim().equals("false")) {
+			values.put(key, Boolean.valueOf(value));
+		    }
+		    else {
+			values.put(key, value);
+		    }
 		}
 	    }
 	}
@@ -57,12 +64,17 @@ public class SimulationConfig {
 
     public boolean isHumanUser() {
 	return ((Boolean)values.get("humanuser")).booleanValue();
-    } //end isHumanUser
+    } //end
 
 
     public int getForageJobSlots() {
 	return ((Integer)values.get("foragejobslots")).intValue();
-    } //end getForageJobSlots
+    } //end
+
+
+    public double getForageChance() {
+	return ((Double)values.get("foragechance")).doubleValue();
+    } //end
 
 
 } //end
