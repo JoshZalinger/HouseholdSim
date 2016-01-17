@@ -39,4 +39,9 @@ public class Food extends Item {
     } //end
 
 
+    public String toString() {
+	return type.getName();
+    } //end
+
+
 } //end class

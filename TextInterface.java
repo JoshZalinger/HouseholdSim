@@ -29,7 +29,7 @@ public class TextInterface implements UI {
 
 
     public void onTurnEnd() {
-	/* ** */kb.nextLine();
+	// Do nothing.
     } //end
 
 
@@ -62,6 +62,22 @@ public class TextInterface implements UI {
 	    }
 	    simpleMessage("Invalid command");
 	}
+    } //end
+
+
+    public void onHouseholdBeginTurn(Household _hhld) {
+	if (_hhld.isHumanControlled()) {
+	    printHouseholdStatus(_hhld);
+	    System.out.println();
+	}
+    } //end
+
+
+    public void printHouseholdStatus(Household _hhld) {
+	System.out.println("Hunger:\t\t" + _hhld.getHunger());
+	System.out.println("Starvation:\t" + _hhld.getStarvation());
+	System.out.println("Labor:\t\t" + _hhld.getRemainingLabor() + " / " + _hhld.getMaxLabor());
+	System.out.println("Inventory:\t" + _hhld.getInventoryPrettyString());
     } //end
 
 

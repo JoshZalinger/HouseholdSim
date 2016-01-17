@@ -23,7 +23,7 @@ public class Household {
 	super();
 	ai = _ai;
 	ai.setOwner(this);
-	remainingLabor = calculateRemainingLabor();
+	remainingLabor = getMaxLabor();
 	house = new House();
 	inventoryMax = house.getInventorySize();
 	inventoryItems = new ArrayList<Item>();
@@ -60,7 +60,7 @@ public class Household {
     } //end
 
 
-    private int calculateRemainingLabor() {
+    public int getMaxLabor() {
 	// TODO: consider housing, etc
 	return BASE_LABOR;
     } //end
@@ -75,7 +75,7 @@ public class Household {
 
 
     public void resetRemainingLabor() {
-	remainingLabor = calculateRemainingLabor();
+	remainingLabor = getMaxLabor();
     } //end
 
 
@@ -176,6 +176,16 @@ public class Household {
 
     public void setStarvation(int _starvation) {
 	starvation = _starvation;
+    } //end
+
+
+    public String getInventoryPrettyString() {
+	return Item.getInventoryPrettyString(inventoryItems);
+    } //end
+
+
+    public boolean isHumanControlled() {
+	return ai instanceof HumanUserAI;
     } //end
 
 

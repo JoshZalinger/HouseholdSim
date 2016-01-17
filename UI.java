@@ -16,7 +16,12 @@ public interface UI {
     public void onTurnEnd();
 
 
+    // For human-controlled households.
     public Action promptForHouseholdAction(Household _hhld);
+
+
+    // Potentially print some info about the hhld.
+    public void onHouseholdBeginTurn(Household _hhld);
 
 
 } //end interface
