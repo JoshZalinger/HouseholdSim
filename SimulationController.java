@@ -57,6 +57,7 @@ public class SimulationController {
 	while(householdsCopy.size() > 0) {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
+	    hhld.setHunger(3);
 	    Simulation.ui.onHouseholdBeginTurn(hhld);
 	    while(true) {
 		Action action = hhld.getAI().takeAction(this);
