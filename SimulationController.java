@@ -58,7 +58,7 @@ public class SimulationController {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
 	    while(true) {
-		Action action = hhld.getAI().takeAction();
+		Action action = hhld.getAI().takeAction(this);
 		if (action.getLaborCost() > hhld.getRemainingLabor()) {
 		    System.err.println("ERROR: household attempted to use above max labor in a turn.");
 		}
@@ -84,6 +84,12 @@ public class SimulationController {
 	boolean endTurn = ActionHandler.applyAction(_hhld, _action, this);
 	_hhld.decrementRemainingLabor(_action.getLaborCost());
 	return endTurn;
+    } //end
+
+
+    public boolean hasPublicJobSlot(JobType _jobType) {
+	PublicJobSource jobSource = publicJobs.get(_jobType);
+	return jobSource != null && jobSource.getCurrentOpenSlots() > 0;
     } //end
 
 

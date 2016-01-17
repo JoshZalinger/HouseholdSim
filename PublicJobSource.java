@@ -15,4 +15,9 @@ public class PublicJobSource {
     } //end
 
 
+    public int getCurrentOpenSlots() {
+	return currentOpenSlots;
+    } //end
+
+
 } //end class

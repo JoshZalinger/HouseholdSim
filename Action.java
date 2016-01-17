@@ -5,10 +5,16 @@ public class Action {
 
     private ActionType actionType;
     private Item item;
+    private JobType jobType;
 
 
     public Action(ActionType _type) {
 	actionType = _type;
+    } //end
+
+    public Action(ActionType _type, JobType _jobType) {
+	this(_type);
+	jobType = _jobType;
     } //end
 
 
@@ -20,25 +26,33 @@ public class Action {
 	return null;
     } //end
 
-
     public int getLaborCost() {
+	if(jobType != null) {
+	    return jobType.getLaborCost();
+	}
 	return actionType.getLaborCost();
     } //end
 
+
+
+
+    // =================== ACCESSORS =====================
 
     public ActionType getActionType() {
 	return actionType;
     } //end getActionType
 
-
     public Item getItem() {
 	return item;
     } //end
 
-
     public void setItem(Item _item) {
 	item = _item;
     } //end
+
+    public JobType getJobType() {
+	return jobType;
+    } //end getJobType
 
 
 } //end class

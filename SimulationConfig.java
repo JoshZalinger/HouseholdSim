@@ -11,7 +11,7 @@ public class SimulationConfig {
 	defaultValues = new HashMap();
 	defaultValues.put("population", 100);
 	defaultValues.put("humanuser", false);
-	defaultValues.put("foragejobslots", 100);
+	defaultValues.put("foragejobslots", 800);
     } //end static block
 
 

@@ -4,7 +4,7 @@
 public class HumanUserAI extends DefaultAI {
 
 
-    public Action takeAction() {
+    public Action takeAction(SimulationController _controller) {
 	Simulation.ui.simpleMessage("Hunger:\t" + household.getHunger());
 	Simulation.ui.simpleMessage("Items:\t" + household.getInventoryUsed());
 

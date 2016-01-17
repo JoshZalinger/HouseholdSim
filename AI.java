@@ -6,7 +6,7 @@ public abstract class AI {
     protected Household household;
 
 
-    public abstract Action takeAction();
+    public abstract Action takeAction(SimulationController _controller);
 
 
     public void setOwner(Household _hhld) {

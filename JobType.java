@@ -4,7 +4,20 @@
 public enum JobType {
 
 
-    FORAGE;
+    FORAGE(1);
+
+
+    private int laborCost;
+
+
+    private JobType(int _labor) {
+	laborCost = _labor;
+    } //end
+
+
+    public int getLaborCost() {
+	return laborCost;
+    } //end getLaborCost
 
 
 } //end class
