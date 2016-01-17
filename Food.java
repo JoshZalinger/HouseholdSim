@@ -12,6 +12,15 @@ public class Food extends Item {
     } //end
 
 
+    public static Food parse(String _foodString) {
+	FoodType parsedType = FoodType.parse(_foodString);
+	if (parsedType != null) {
+	    return new Food(parsedType);
+	}
+	return null;
+    } //end
+
+
     public FoodType getFoodType() {
 	return type;
     } //end

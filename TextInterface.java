@@ -37,9 +37,27 @@ public class TextInterface implements UI {
 	while(true) {
 	    System.out.print("> ");
 	    String rawCommand = kb.nextLine().trim().toLowerCase();
-	    Action action = Action.parse(rawCommand);
+	    Scanner input = new Scanner(rawCommand);
+
+	    if (!(input.hasNext())) {
+		simpleMessage("No command");
+		continue;
+	    }
+
+	    Action action = Action.parse(input.next());
 	    if (action != null) {
 		// TODO: validate the command
+		switch(action.getActionType()) {
+		case EAT:
+		    if (!(input.hasNext())) {
+			simpleMessage("No item specified to eat");
+			continue;
+		    }
+		    Food food = Food.parse(input.next());
+		    action.setItem(food);
+		default:
+		}
+
 		return action;
 	    }
 	    simpleMessage("Invalid command");

@@ -122,12 +122,21 @@ public class Household {
     } //end
 
 
-    public Boolean hasItem(Item _item) {
-	return inventoryItems.contains(_item);
+    public Item getItem(Item _item) {
+	for (int i=0; i<inventoryItems.size(); i++) {
+	    if (inventoryItems.get(i).equals(_item)) {
+		return inventoryItems.get(i);
+	    }
+	}
+	return null;
     } //end
 
 
     public Boolean removeItem(Item _item) {
+	if (_item == null) {
+	    return false;
+	}
+
 	return inventoryItems.remove(_item);
     } //end
 
