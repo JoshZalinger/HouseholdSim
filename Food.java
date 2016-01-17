@@ -7,7 +7,7 @@ public class Food extends Item {
 
 
     public Food(FoodType _type) {
-	super(_type.getName(), 1);
+	super(_type.toString(), 1);
 	type = _type;
     } //end
 
@@ -23,6 +23,19 @@ public class Food extends Item {
 
     public FoodType getFoodType() {
 	return type;
+    } //end
+
+
+    public boolean equals(Object o) {
+	if (!(o instanceof Food)) {
+	    return false;
+	}
+	return equals((Food)o);
+    } //end
+
+
+    public boolean equals(Food _food) {
+	return (_food.getFoodType() == type);
     } //end
 
 

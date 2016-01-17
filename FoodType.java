@@ -39,7 +39,7 @@ public enum FoodType {
     } //end
 
 
-    public String getName() {
+    public String toString() {
 	return name;
     } //end
 
