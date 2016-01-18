@@ -22,6 +22,11 @@ public class Action {
 	jobType = _jobType;
     } //end
 
+    public Action(ActionType _type, Item _item) {
+	this(_type);
+	item = _item;
+    } //end
+
 
     public static Action parse(String _actionString) {
 	ActionType parsedType = ActionType.parse(_actionString);
