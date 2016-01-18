@@ -15,7 +15,7 @@ public interface UI {
     public void onBegin();
 
 
-    public void onTurnEnd();
+    public void onTurnEnd(boolean _isStepTurn);
 
 
     // For human-controlled households.
