@@ -81,6 +81,9 @@ public class SimulationController {
 	    }
 	    hhld.resetRemainingLabor();
 	    hhld.updateStarvation();
+	    if (hhld.getStarvation() > config.getStarvationMax()) {
+		kill(hhld);
+	    }
 	}
 
 	// Reset all public job slots.
@@ -102,6 +105,11 @@ public class SimulationController {
 	boolean endTurn = ActionHandler.applyAction(_hhld, _action, this);
 	_hhld.decrementRemainingLabor(_action.getLaborCost());
 	return endTurn;
+    } //end
+
+
+    public void kill(Household _hhld) {
+        households.remove(_hhld);
     } //end
 
 

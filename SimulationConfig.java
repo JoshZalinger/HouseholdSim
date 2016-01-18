@@ -15,6 +15,7 @@ public class SimulationConfig {
 	defaultValues.put("foragechance", 0.5);
 	defaultValues.put("foragefoodtype", "corn");
 	defaultValues.put("dayinlife", false);
+	defaultValues.put("starvationmax", 20);
     } //end static block
 
 
@@ -85,6 +86,10 @@ public class SimulationConfig {
 
     public boolean isDayInLife() {
 	return ((Boolean)values.get("dayinlife")).booleanValue();
+    } //end
+
+    public int getStarvationMax() {
+	return ((Integer)values.get("starvationmax")).intValue();
     } //end
 
 
