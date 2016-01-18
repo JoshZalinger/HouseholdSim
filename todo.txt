@@ -13,3 +13,4 @@ Skills enable new actions
 
 unused property is lost
 
+Make DefaultAI become toolmakers, build tools.

@@ -72,6 +72,16 @@ public class TextInterface implements UI {
 		    action = new Action(actionType, jobType);
 		    break;
 
+		    // ================= CRAFT TOOL ==================
+		case CRAFT_TOOL:
+		    if(!(input.hasNext())) {
+			simpleMessage("No tool type specified.");
+			continue;
+		    }
+		    ToolType toolType = ToolType.parse(input.next());
+		    action = new Action(actionType, toolType);
+		    break;
+
 		    // ================= START STRUCTURE ==================
 		case START_STRUCTURE:
 		    if (!(input.hasNext())) {

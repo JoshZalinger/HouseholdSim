@@ -6,6 +6,7 @@ public class Action {
     private ActionType actionType;
     private Item item;
     private JobType jobType;
+    private ToolType toolType;
     private StructureType structureType;
 
 
@@ -21,6 +22,11 @@ public class Action {
     public Action(ActionType _type, JobType _jobType) {
 	this(_type);
 	jobType = _jobType;
+    } //end
+
+    public Action(ActionType _type, ToolType _toolType) {
+	this(_type);
+	toolType = _toolType;
     } //end
 
     public Action(ActionType _type, StructureType _structureType) {
@@ -41,6 +47,9 @@ public class Action {
 	if(jobType != null) {
 	    return jobType.getLaborCost();
 	}
+	else if(toolType != null) {
+	    return toolType.getLaborCost();
+	}
 	return actionType.getLaborCost();
     } //end
 
@@ -55,7 +64,7 @@ public class Action {
 
     public ActionType getActionType() {
 	return actionType;
-    } //end getActionType
+    } //end
 
     public Item getItem() {
 	return item;
@@ -63,7 +72,11 @@ public class Action {
 
     public JobType getJobType() {
 	return jobType;
-    } //end getJobType
+    } //end
+
+    public ToolType getToolType() {
+	return toolType;
+    } //end
 
     public StructureType getStructureType() {
 	return structureType;
