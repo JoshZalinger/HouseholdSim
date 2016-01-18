@@ -189,4 +189,17 @@ public class Household {
     } //end
 
 
+    public Food getFoodItem(FoodType _type) {
+	for(Item i: inventoryItems) {
+	    if(i instanceof Food) {
+		Food f = (Food)i;
+		if(f.getFoodType() == _type) {
+		    return f;
+		}
+	    }
+	}
+	return null;
+    } //end
+
+
 } //end class
