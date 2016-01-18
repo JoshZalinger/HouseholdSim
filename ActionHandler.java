@@ -79,10 +79,17 @@ public class ActionHandler {
 	switch(_jobType) {
 
 	case FORAGE:
-	    double r = Math.random();
-	    if (r < _controller.getConfig().getForageChance()) {
+	    double forageChance = Math.random();
+	    if (forageChance < _controller.getConfig().getForageChance()) {
 		FoodType foodType = _controller.getConfig().getForageFoodType();
 		_hhld.addToInventory(new Food(foodType));
+	    }
+	    return false;
+
+	case GATHER_STICKS:
+	    double gatherSticksChance = Math.random();
+	    if (gatherSticksChance < _controller.getConfig().getGatherSticksChance()) {
+		_hhld.addToInventory(new MaterialItem(MaterialItemType.STICK));
 	    }
 	    return false;
 

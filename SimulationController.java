@@ -52,6 +52,7 @@ public class SimulationController {
 
 	publicJobs = new HashMap<JobType, PublicJobSource>();
 	publicJobs.put(JobType.FORAGE, new PublicJobSource(JobType.FORAGE, config.getForageJobSlots()));
+	publicJobs.put(JobType.GATHER_STICKS, new PublicJobSource(JobType.GATHER_STICKS, config.getGatherSticksJobSlots()));
     } //end
 
 
@@ -90,6 +91,16 @@ public class SimulationController {
 	// Reset all public job slots.
 	for(PublicJobSource jobSource: publicJobs.values()) {
 	    jobSource.onEndTurn();
+	}
+
+	// Grow the population.
+	int totalHhlds = households.size();
+	for (int i=0; i<totalHhlds; i++) {
+	    double random = Math.random();
+	    if (random < config.getBirthRate()) {
+		AI ai = new DefaultAI();
+		households.add(new Household(ai));
+	    }
 	}
 
 	turnNumber++;
