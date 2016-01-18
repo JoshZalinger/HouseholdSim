@@ -91,6 +91,16 @@ public class SimulationController {
 	    jobSource.onEndTurn();
 	}
 
+	// Grow the population.
+	int totalHhlds = households.size();
+	for (int i=0; i<totalHhlds; i++) {
+	    double random = Math.random();
+	    if (random < config.getBirthRate()) {
+		AI ai = new DefaultAI();
+		households.add(new Household(ai));
+	    }
+	}
+
 	turnNumber++;
     } //end doTurn
 

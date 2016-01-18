@@ -16,6 +16,7 @@ public class SimulationConfig {
 	defaultValues.put("foragefoodtype", "corn");
 	defaultValues.put("dayinlife", false);
 	defaultValues.put("starvationmax", 20);
+	defaultValues.put("birthrate", .001);
     } //end static block
 
 
@@ -90,6 +91,10 @@ public class SimulationConfig {
 
     public int getStarvationMax() {
 	return ((Integer)values.get("starvationmax")).intValue();
+    } //end
+
+    public double getBirthRate() {
+	return ((Double)values.get("birthrate")).doubleValue();
     } //end
 
 
