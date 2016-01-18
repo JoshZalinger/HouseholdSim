@@ -1,5 +1,7 @@
 // Interface that must be implemented by all user interfaces
 
+import java.util.ArrayList;
+
 
 public interface UI {
 
@@ -17,7 +19,7 @@ public interface UI {
 
 
     // For human-controlled households.
-    public Action promptForHouseholdAction(Household _hhld);
+    public Action promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList);
 
 
     // Potentially print some info about the hhld.

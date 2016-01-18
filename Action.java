@@ -12,6 +12,11 @@ public class Action {
 	actionType = _type;
     } //end
 
+    public Action(ActionType _type, Item _item) {
+	this(_type);
+	item = _item;
+    } //end
+
     public Action(ActionType _type, JobType _jobType) {
 	this(_type);
 	jobType = _jobType;
@@ -44,10 +49,6 @@ public class Action {
 
     public Item getItem() {
 	return item;
-    } //end
-
-    public void setItem(Item _item) {
-	item = _item;
     } //end
 
     public JobType getJobType() {
