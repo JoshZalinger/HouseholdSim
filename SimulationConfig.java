@@ -16,6 +16,7 @@ public class SimulationConfig {
 	defaultValues.put("foragefoodtype", "corn");
 	defaultValues.put("dayinlife", false);
 	defaultValues.put("step", 10); //how many turns between pause
+	defaultValues.put("starvationmax", 20);
     } //end static block
 
 
@@ -90,6 +91,10 @@ public class SimulationConfig {
 
     public int getTurnStep() {
 	return ((Integer)values.get("step")).intValue();
+    } //end
+
+    public int getStarvationMax() {
+	return ((Integer)values.get("starvationmax")).intValue();
     } //end
 
 
