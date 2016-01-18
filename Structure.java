@@ -15,6 +15,14 @@ public class Structure {
     } //end
 
 
+    public void addLabor(int labor) {
+	laborSoFar += labor;
+	if (laborSoFar >= type.getLaborCost()) {
+	    underConstruction = false;
+	}
+    } //end
+
+
     public StructureType getStructureType() {
 	return type;
     } //end
@@ -37,11 +45,6 @@ public class Structure {
 
     public int getLaborSoFar() {
 	return laborSoFar;
-    } //end
-
-
-    public void addLabor(int labor) {
-	laborSoFar += labor;
     } //end
 
 

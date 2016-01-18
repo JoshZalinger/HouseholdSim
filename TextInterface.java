@@ -51,6 +51,8 @@ public class TextInterface implements UI {
 	    ActionType actionType = ActionType.parse(input.next());
 	    if (actionType != null) {
 		switch(actionType) {
+
+		    // ================= EAT ==================
 		case EAT:
 		    if (!(input.hasNext())) {
 			simpleMessage("No item specified to eat");
@@ -59,6 +61,8 @@ public class TextInterface implements UI {
 		    Food food = Food.parse(input.next());
 		    action = new Action(actionType, food);
 		    break;
+
+		    // ================= PUBLIC JOB ==================
 		case PUBLIC_JOB:
 		    if (!(input.hasNext())) {
 			simpleMessage("No job type specified");
@@ -67,6 +71,8 @@ public class TextInterface implements UI {
 		    JobType jobType = JobType.parse(input.next());
 		    action = new Action(actionType, jobType);
 		    break;
+
+		    // ================= START STRUCTURE ==================
 		case START_STRUCTURE:
 		    if (!(input.hasNext())) {
 			simpleMessage("No structure type specified");
@@ -75,6 +81,17 @@ public class TextInterface implements UI {
 		    StructureType structureType = StructureType.parse(input.next());
 		    action = new Action(actionType, structureType);
 		    break;
+
+		    // ================= BUILD STRUCTURE ==================
+		case BUILD_STRUCTURE:
+		    if (!(input.hasNext())) {
+			simpleMessage("No structure type specified");
+			continue;
+		    }
+		    StructureType buildStructType = StructureType.parse(input.next());
+		    action = new Action(actionType, buildStructType);
+		    break;
+
 		default:
 		    action = new Action(actionType);
 		}

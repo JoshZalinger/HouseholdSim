@@ -6,7 +6,8 @@ public enum ActionType {
     END_TURN(0, "endturn"),
     EAT(0, "eat"),
     PUBLIC_JOB(1, "publicjob"), //TODO labor cost should depend on job type?
-    START_STRUCTURE(0, "startstructure");
+    START_STRUCTURE(0, "startstructure"),
+    BUILD_STRUCTURE(1, "buildstructure");
 
 
     private int laborCost;

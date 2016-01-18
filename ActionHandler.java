@@ -45,11 +45,26 @@ public class ActionHandler {
 	    if (structureType == null) {
 		return "ActionHandler error for " + _action.getActionType() + " action: no associated structure type.";
 	    }
+	    if (!(_hhld.hasSkill(structureType.getRequiredSkill()))) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld doesn't have the required skill.";
+	    }
 	    if (_hhld.getStructure(structureType) != null) {
 		return "ActionHandler error for " + _action.getActionType() + " action: hhld already has a structure of this type.";
 	    }
-	    if (!(_hhld.hasSkill(structureType.getRequiredSkill()))) {
-		return "ActionHandler error for " + _action.getActionType() + " action: hhld doesn't have the required skill.";
+	    return null;
+
+	    // ================= BUILD STRUCTURE ==================
+	case BUILD_STRUCTURE:
+	    StructureType buildStructType = _action.getStructureType();
+	    if (buildStructType == null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: no associated structure type.";
+	    }
+	    Structure structure = _hhld.getStructure(buildStructType);
+	    if (structure == null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld doesn't have a structure of that type.";
+	    }
+	    if (!(structure.getUnderConstruction())) {
+		return "ActionHandler error for " + _action.getActionType() + " action: structure isn't currently under construction.";
 	    }
 	    return null;
 
@@ -87,6 +102,13 @@ public class ActionHandler {
 	case START_STRUCTURE:
 	    StructureType structureType = _action.getStructureType();
 	    _hhld.addStructure(new Structure(structureType));
+	    return false;
+
+	    // ================= BUILD STRUCTURE ==================
+	case BUILD_STRUCTURE:
+	    StructureType buildStructType = _action.getStructureType();
+	    Structure structure = _hhld.getStructure(buildStructType);
+	    structure.addLabor(1);
 	    return false;
 
 	default:
