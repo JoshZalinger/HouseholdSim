@@ -1,8 +1,8 @@
 TODO list:
 
-if a hhld doesn't have space for a new item, they should lose it
-the AI shouldn't take actions when they don't have space for the results
-
 implement the luxury system
 
 if the human AI or day-in-life AI dies, transfer control to living hhld
+
+unused property is lost
+

@@ -52,6 +52,7 @@ public class SimulationController {
 
 	publicJobs = new HashMap<JobType, PublicJobSource>();
 	publicJobs.put(JobType.FORAGE, new PublicJobSource(JobType.FORAGE, config.getForageJobSlots()));
+	publicJobs.put(JobType.GATHER_STICKS, new PublicJobSource(JobType.GATHER_STICKS, config.getGatherSticksJobSlots()));
     } //end
 
 

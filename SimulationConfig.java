@@ -18,6 +18,8 @@ public class SimulationConfig {
 	defaultValues.put("step", 10); //how many turns between pause
 	defaultValues.put("starvationmax", 20);
 	defaultValues.put("birthrate", .001);
+	defaultValues.put("gathersticksjobslots", 200);
+	defaultValues.put("gatherstickschance", 0.3);
     } //end static block
 
 
@@ -100,6 +102,15 @@ public class SimulationConfig {
 
     public double getBirthRate() {
 	return ((Double)values.get("birthrate")).doubleValue();
+    } //end
+
+    public int getGatherSticksJobSlots() {
+	return ((Integer)values.get("gathersticksjobslots")).intValue();
+    } //end
+
+
+    public double getGatherSticksChance() {
+	return ((Double)values.get("gatherstickschance")).doubleValue();
     } //end
 
 
