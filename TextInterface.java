@@ -67,6 +67,14 @@ public class TextInterface implements UI {
 		    JobType jobType = JobType.parse(input.next());
 		    action = new Action(actionType, jobType);
 		    break;
+		case START_STRUCTURE:
+		    if (!(input.hasNext())) {
+			simpleMessage("No structure type specified");
+			continue;
+		    }
+		    StructureType structureType = StructureType.parse(input.next());
+		    action = new Action(actionType, structureType);
+		    break;
 		default:
 		    action = new Action(actionType);
 		}

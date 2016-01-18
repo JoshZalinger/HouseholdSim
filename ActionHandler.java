@@ -40,6 +40,20 @@ public class ActionHandler {
 	    // TODO: make sure hhld's inventory is not full
 	    return null;
 
+	    // =========== START STRUCTURE ==========================
+	case START_STRUCTURE:
+	    StructureType structureType = _action.getStructureType();
+	    if (structureType == null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: no associated structure type.";
+	    }
+	    if (_hhld.getStructure(structureType) != null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld already has a structure of this type.";
+	    }
+	    if (!(_hhld.hasSkill(structureType.getRequiredSkill()))) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld doesn't have the required skill.";
+	    }
+	    return null;
+
 	case END_TURN:
 	    return null;
 

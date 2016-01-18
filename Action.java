@@ -6,6 +6,7 @@ public class Action {
     private ActionType actionType;
     private Item item;
     private JobType jobType;
+    private StructureType structureType;
 
 
     public Action(ActionType _type) {
@@ -20,6 +21,11 @@ public class Action {
     public Action(ActionType _type, JobType _jobType) {
 	this(_type);
 	jobType = _jobType;
+    } //end
+
+    public Action(ActionType _type, StructureType _structureType) {
+	this(_type);
+	structureType = _structureType;
     } //end
 
 
@@ -58,6 +64,10 @@ public class Action {
     public JobType getJobType() {
 	return jobType;
     } //end getJobType
+
+    public StructureType getStructureType() {
+	return structureType;
+    } //end getStructureType
 
 
 } //end class

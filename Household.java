@@ -17,6 +17,7 @@ public class Household {
     private int[] vitaminStats;
 
     private House house;
+    private ArrayList<Structure> structures;
 
     private int level;
     private int turnsAtNextLuxuryLevel;
@@ -33,6 +34,7 @@ public class Household {
 	inventoryItems = new ArrayList<Item>();
 	vitaminStats = new int[3];
 	skills = new ArrayList<Skill>();
+	structures = new ArrayList<Structure>();
 
 	level = 0;
 
@@ -264,6 +266,26 @@ public class Household {
 
     public int getTurnsAtNextLuxuryLevel() {
 	return turnsAtNextLuxuryLevel;
+    } //end
+
+
+    public Structure getStructure(StructureType _type) {
+	for(Structure s: structures) {
+	    if(s.getStructureType() == _type) {
+		return s;
+	    }
+	}
+	return null;
+    } //end
+
+
+    public ArrayList<Structure> getStructures() {
+	return structures;
+    } //end
+
+
+    public boolean hasSkill(Skill _skill) {
+	return skills.contains(_skill);
     } //end
 
 
