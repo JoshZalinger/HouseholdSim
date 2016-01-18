@@ -14,4 +14,7 @@ public abstract class AI {
     } //end
 
 
+    public abstract Skill chooseSkill(SimulationController _controller);
+
+
 } //end interface

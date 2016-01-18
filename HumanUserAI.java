@@ -28,4 +28,9 @@ public class HumanUserAI extends DefaultAI {
     } //end
 
 
+    public Skill chooseSkill(SimulationController _controller) {
+	return Simulation.ui.promptForNewSkill(household);
+    } //end
+
+
 } //end class

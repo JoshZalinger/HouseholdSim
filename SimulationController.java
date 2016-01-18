@@ -43,7 +43,7 @@ public class SimulationController {
 	    Household hhld = new Household(ai);
 	    households.add(hhld);
 
-	    if(config.isDayInLife()) {
+	    if(i == 0 && config.isDayInLife()) {
 		dayInLifeHousehold = hhld;
 	    }
 	}
@@ -80,8 +80,8 @@ public class SimulationController {
 		    break;
 		}
 	    }
-	    hhld.resetRemainingLabor();
-	    hhld.updateStarvation();
+	    hhld.onEndTurn(this);
+
 	    if (hhld.getStarvation() > config.getStarvationMax()) {
 		kill(hhld);
 	    }

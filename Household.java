@@ -18,6 +18,10 @@ public class Household {
 
     private House house;
 
+    private int level;
+    private int turnsAtNextLuxuryLevel;
+    private ArrayList<Skill> skills;
+
 
     public Household(AI _ai) {
 	super();
@@ -28,6 +32,9 @@ public class Household {
 	inventoryMax = house.getInventorySize();
 	inventoryItems = new ArrayList<Item>();
 	vitaminStats = new int[3];
+	skills = new ArrayList<Skill>();
+
+	level = 0;
 
 	//initialize hashmap for vitamin enum -> array index
 	vitaminMap = new HashMap<Vitamin, Integer>();
@@ -86,6 +93,54 @@ public class Household {
 	else if (starvation > 0) {
 	    starvation--;
 	}
+    } //end
+
+
+    public void onEndTurn(SimulationController _controller) {
+	resetRemainingLabor();
+	updateStarvation();
+	updateLuxury(_controller);
+    } //end
+
+
+    private void updateLuxury(SimulationController _controller) {
+	// TODO: if below own luxury level, put in probation
+
+	if(starvation > 0) {
+	    // If hhld is staving, they automatically lose all luxury progress.
+	    turnsAtNextLuxuryLevel = 0;
+	}
+	else if(Level.doesMeetLuxuryRequirement(this, level + 1)) {
+	    turnsAtNextLuxuryLevel++;
+	    if(turnsAtNextLuxuryLevel >= Level.levels[level + 1].getTurnsRequirement()) {
+		levelUp(_controller);
+	    }
+	}
+	else {
+	    turnsAtNextLuxuryLevel = 0;
+	}
+    } //end
+
+
+    public int[] getLuxuryAmounts() {
+	// Return array of luxury amounts (category-agnostic), sorted in descending order.
+
+	// hax
+	return new int[]{0};
+    } //end
+
+
+    private void levelUp(SimulationController _controller) {
+	level++;
+	Skill newSkill = ai.chooseSkill(_controller);
+	if(newSkill.getLevel() != level) {
+	    System.err.println("ERROR: hhld chose skill at inappropriate level");
+	}
+	else {
+	    skills.add(newSkill);
+	}
+
+	turnsAtNextLuxuryLevel = 0;
     } //end
 
 
@@ -199,6 +254,16 @@ public class Household {
 	    }
 	}
 	return null;
+    } //end
+
+
+    public int getLevel() {
+	return level;
+    } //end
+
+
+    public int getTurnsAtNextLuxuryLevel() {
+	return turnsAtNextLuxuryLevel;
     } //end
 
 

@@ -88,6 +88,19 @@ public class TextInterface implements UI {
     } //end
 
 
+    public Skill promptForNewSkill(Household _hhld) {
+	simpleMessage("Choose a skill.");
+	while(true) {
+	    System.out.print("> ");
+	    String skillName = kb.nextLine().trim().toLowerCase();
+	    Skill newSkill = Skill.parse(skillName);
+	    if(newSkill != null) {
+		return newSkill;
+	    }
+	}
+    } //end
+
+
     public void onHouseholdBeginTurn(Household _hhld) {
 	// Do nothing.
     } //end
@@ -107,10 +120,14 @@ public class TextInterface implements UI {
 
 
     public void printHouseholdStatus(Household _hhld) {
+	System.out.println("Level:\t\t" + _hhld.getLevel());
 	System.out.println("Hunger:\t\t" + _hhld.getHunger());
 	System.out.println("Starvation:\t" + _hhld.getStarvation());
 	System.out.println("Labor:\t\t" + _hhld.getRemainingLabor() + " / " + _hhld.getMaxLabor());
 	System.out.println("Inventory:\t" + _hhld.getInventoryPrettyString());
+	if(_hhld.getTurnsAtNextLuxuryLevel() > 0) {
+	    System.out.println("Turns ar next luxury level: " + _hhld.getTurnsAtNextLuxuryLevel());
+	}
     } //end
 
 

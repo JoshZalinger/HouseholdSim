@@ -22,6 +22,9 @@ public interface UI {
     public void promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList);
 
 
+    public Skill promptForNewSkill(Household _hhld);
+
+
     // Potentially print some info about the hhld.
     public void onHouseholdBeginTurn(Household _hhld);
 

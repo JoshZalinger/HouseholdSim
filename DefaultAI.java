@@ -19,4 +19,9 @@ public class DefaultAI extends AI {
     } //end takeAction
 
 
+    public Skill chooseSkill(SimulationController _controller) {
+	return Skill.FARMER;
+    } //end
+
+
 } //end class

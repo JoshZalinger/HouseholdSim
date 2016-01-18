@@ -8,3 +8,7 @@ death from starvation
 population growth
 
 if the human AI or day-in-life AI dies, transfer control to living hhld
+
+Implement luxury probabtion and losing levels.
+
+Implement penalties from starvation (reset luxury count, lock skill actions).
