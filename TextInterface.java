@@ -67,6 +67,7 @@ public class TextInterface implements UI {
 		    JobType jobType = JobType.parse(input.next());
 		    action = new Action(actionType, jobType);
 		    break;
+
 		case CRAFT_TOOL:
 		    if(!(input.hasNext())) {
 			simpleMessage("No tool type specified.");
@@ -74,6 +75,15 @@ public class TextInterface implements UI {
 		    }
 		    ToolType toolType = ToolType.parse(input.next());
 		    action = new Action(actionType, toolType);
+		    break;
+
+		case START_STRUCTURE:
+		    if (!(input.hasNext())) {
+			simpleMessage("No structure type specified");
+			continue;
+		    }
+		    StructureType structureType = StructureType.parse(input.next());
+		    action = new Action(actionType, structureType);
 		    break;
 		default:
 		    action = new Action(actionType);
@@ -135,6 +145,16 @@ public class TextInterface implements UI {
 	System.out.println("Inventory:\t" + _hhld.getInventoryPrettyString());
 	if(_hhld.getTurnsAtNextLuxuryLevel() > 0) {
 	    System.out.println("Turns at next luxury level: " + _hhld.getTurnsAtNextLuxuryLevel());
+	}
+	ArrayList<Structure> structures = _hhld.getStructures();
+	for (int i=0; i<structures.size(); i++) {
+	    Structure struct = structures.get(i);
+	    System.out.print("Structure (" + i + "):\t" + struct);
+	    if (struct.getUnderConstruction()) {
+		System.out.println("\t(under construction)");
+		System.out.print("\tLabor: " + struct.getLaborSoFar() + "/" + struct.getStructureType().getLaborCost());
+	    }
+	    System.out.println();
 	}
     } //end
 

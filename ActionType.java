@@ -6,8 +6,8 @@ public enum ActionType {
     END_TURN(0, "endturn"),
     EAT(0, "eat"),
     PUBLIC_JOB(-1, "publicjob"),
-    CRAFT_TOOL(-1, "crafttool");
-
+    CRAFT_TOOL(-1, "crafttool"),
+    START_STRUCTURE(0, "startstructure");
 
 
     private int laborCost;

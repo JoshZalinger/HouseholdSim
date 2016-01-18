@@ -1,13 +1,15 @@
 TODO list:
 
-implement the luxury system
 
 if the human AI or day-in-life AI dies, transfer control to living hhld
+Add support for multiple different AIs
+Let human AI skip ahead many turns
 
-Implement luxury probabtion and losing levels.
+Implement luxury probation and losing levels.
 
-Implement penalties from starvation (reset luxury count, lock skill actions).
+Implement penalties from starvation (lock skill actions).
 
+Skills enable new actions
 
 unused property is lost
 

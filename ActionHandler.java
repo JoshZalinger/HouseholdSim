@@ -24,7 +24,6 @@ public class ActionHandler {
 	    if (_hhld.getHunger() <= 0) {
 		return "ActionHandler error for EAT action: hhld has 0 hunger.";
 	    }
-	    _hhld.eat((Food)item);
 	    return null;
 
 	    // =========== PUBLIC JOB ==========================
@@ -50,6 +49,20 @@ public class ActionHandler {
 	    }
 	    return null;
 
+	    // =========== START STRUCTURE ==========================
+	case START_STRUCTURE:
+	    StructureType structureType = _action.getStructureType();
+	    if (structureType == null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: no associated structure type.";
+	    }
+	    if (_hhld.getStructure(structureType) != null) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld already has a structure of this type.";
+	    }
+	    if (!(_hhld.hasSkill(structureType.getRequiredSkill()))) {
+		return "ActionHandler error for " + _action.getActionType() + " action: hhld doesn't have the required skill.";
+	    }
+	    return null;
+
 	case END_TURN:
 	    return null;
 
@@ -69,6 +82,9 @@ public class ActionHandler {
 
 	    // ================= EAT ==================
 	case EAT:
+	    Item item = _action.getItem();
+	    item = _hhld.getItem(item);
+	    _hhld.eat((Food)item);
 	    return false;
 
 	    // ================= PUBLIC JOB =================
@@ -82,6 +98,12 @@ public class ActionHandler {
 	    InventoryUtil.subtractFromInventory(_hhld, _action.getToolType().getMaterialCost());
 	    ToolItem tool  = new ToolItem(_action.getToolType());
 	    _hhld.addToInventory(tool);
+	    return false;
+
+	    // ================= START STRUCTURE ==================
+	case START_STRUCTURE:
+	    StructureType structureType = _action.getStructureType();
+	    _hhld.addStructure(new Structure(structureType));
 	    return false;
 
 	default:
