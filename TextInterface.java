@@ -83,9 +83,19 @@ public class TextInterface implements UI {
 
 
     public void onHouseholdBeginTurn(Household _hhld) {
+	// Do nothing.
+    } //end
+
+
+    public void onHouseholdChooseAction(Household _hhld, SimulationController _controller) {
 	if (_hhld.isHumanControlled()) {
 	    printHouseholdStatus(_hhld);
 	    System.out.println();
+	}
+	if (_hhld == _controller.getDayInLifeHousehold()) {
+	    System.out.println();
+	    printHouseholdStatus(_hhld);
+	    kb.nextLine();
 	}
     } //end
 

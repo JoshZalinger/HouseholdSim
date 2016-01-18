@@ -10,6 +10,7 @@ public class SimulationController {
     private ArrayList<Household> households;
     private int turnNumber;
     private HashMap<JobType, PublicJobSource> publicJobs;
+    private Household dayInLifeHousehold; //the hhld being tracked in "day in life", can be null
 
 
     public SimulationController(SimulationConfig _config) {
@@ -41,6 +42,10 @@ public class SimulationController {
 	    }
 	    Household hhld = new Household(ai);
 	    households.add(hhld);
+
+	    if(config.isDayInLife()) {
+		dayInLifeHousehold = hhld;
+	    }
 	}
 
 	turnNumber = 0;
@@ -53,14 +58,20 @@ public class SimulationController {
     private void doTurn() {
 	ArrayList<Household> householdsCopy = new ArrayList<Household>();
 	householdsCopy.addAll(households);
-	Simulation.ui.simpleMessage("Turn " + turnNumber);
+	Simulation.ui.simpleMessage(" === Turn " + turnNumber + " ===");
 	while(householdsCopy.size() > 0) {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
 	    hhld.setHunger(3);
 	    Simulation.ui.onHouseholdBeginTurn(hhld);
 	    while(true) {
+		Simulation.ui.onHouseholdChooseAction(hhld, this);
+
 		Action action = hhld.getAI().takeAction(this);
+		if(hhld == dayInLifeHousehold) {
+		    Simulation.ui.simpleMessage("Selected action: " + action.toString());
+		}
+
 		if (action.getLaborCost() > hhld.getRemainingLabor()) {
 		    System.err.println("ERROR: household attempted to use above max labor in a turn.");
 		}
@@ -108,6 +119,11 @@ public class SimulationController {
     public SimulationConfig getConfig() {
 	return config;
     } //end getConfig
+
+
+    public Household getDayInLifeHousehold() {
+	return dayInLifeHousehold;
+    } //end
 
 
 } //end class

@@ -81,7 +81,8 @@ public class ActionHandler {
 	case FORAGE:
 	    double r = Math.random();
 	    if (r < _controller.getConfig().getForageChance()) {
-		_hhld.addToInventory(new Food(FoodType.CORN));
+		FoodType foodType = _controller.getConfig().getForageFoodType();
+		_hhld.addToInventory(new Food(foodType));
 	    }
 	    return false;
 
