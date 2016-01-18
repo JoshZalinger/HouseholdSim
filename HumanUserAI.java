@@ -18,8 +18,12 @@ public class HumanUserAI extends DefaultAI {
 	    Simulation.ui.promptForHouseholdAction(household, actionList);
 	}
 
-	Action action = actionList.get(actionList.size());
-	actionList.remove(actionList.size());
+	if (actionList.size() == 0) {
+	    return null;
+	}
+
+	Action action = actionList.get(actionList.size()-1);
+	actionList.remove(actionList.size()-1);
 	return action;
     } //end
 

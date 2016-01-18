@@ -19,7 +19,7 @@ public interface UI {
 
 
     // For human-controlled households.
-    public Action promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList);
+    public void promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList);
 
 
     // Potentially print some info about the hhld.

@@ -34,7 +34,7 @@ public class TextInterface implements UI {
     } //end
 
 
-    public Action promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList) {
+    public void promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList) {
 	while(true) {
 	    System.out.print("> ");
 	    String rawCommand = kb.nextLine().trim().toLowerCase();
@@ -56,6 +56,7 @@ public class TextInterface implements UI {
 		    }
 		    Food food = Food.parse(input.next());
 		    action = new Action(actionType, food);
+		    break;
 		case PUBLIC_JOB:
 		    if (!(input.hasNext())) {
 			simpleMessage("No job type specified");
@@ -63,6 +64,7 @@ public class TextInterface implements UI {
 		    }
 		    JobType jobType = JobType.parse(input.next());
 		    action = new Action(actionType, jobType);
+		    break;
 		default:
 		    action = new Action(actionType);
 		}
@@ -75,6 +77,8 @@ public class TextInterface implements UI {
 		} else {
 		    actionList.add(action);
 		}
+
+		return;
 	    } else {
 		simpleMessage("Invalid command");
 	    }
