@@ -29,8 +29,10 @@ public class TextInterface implements UI {
     } //end onBegin
 
 
-    public void onTurnEnd() {
-	// Do nothing.
+    public void onTurnEnd(boolean _isStepTurn) {
+	if(_isStepTurn) {
+	    kb.nextLine();
+	}
     } //end
 
 

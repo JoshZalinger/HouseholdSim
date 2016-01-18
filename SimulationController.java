@@ -23,7 +23,7 @@ public class SimulationController {
 	Simulation.ui.onBegin();
 	while(true) {
 	    doTurn();
-	    Simulation.ui.onTurnEnd();
+	    Simulation.ui.onTurnEnd(turnNumber % config.getTurnStep() == 0);
 	}
     } //end
 
@@ -59,6 +59,7 @@ public class SimulationController {
 	ArrayList<Household> householdsCopy = new ArrayList<Household>();
 	householdsCopy.addAll(households);
 	Simulation.ui.simpleMessage(" === Turn " + turnNumber + " ===");
+	Simulation.ui.simpleMessage(" Population: " + households.size());
 	while(householdsCopy.size() > 0) {
 	    int r = (int)(Math.random() * householdsCopy.size());
 	    Household hhld = householdsCopy.remove(r);
