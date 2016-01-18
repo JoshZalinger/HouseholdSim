@@ -24,7 +24,6 @@ public class ActionHandler {
 	    if (_hhld.getHunger() <= 0) {
 		return "ActionHandler error for EAT action: hhld has 0 hunger.";
 	    }
-	    _hhld.eat((Food)item);
 	    return null;
 
 	    // =========== PUBLIC JOB ==========================
@@ -71,8 +70,11 @@ public class ActionHandler {
 	case END_TURN:
 	    return true;
 
-	    // ================= END TURN ==================
+	    // ================= EAT ==================
 	case EAT:
+	    Item item = _action.getItem();
+	    item = _hhld.getItem(item);
+	    _hhld.eat((Food)item);
 	    return false;
 
 	    // ================= PUBLIC JOB =================
@@ -80,6 +82,12 @@ public class ActionHandler {
 	    JobType jobType = _action.getJobType();
 	    _controller.claimPublicJobSlot(jobType);
 	    return ActionHandler.applyJobType(_hhld, jobType, _controller);
+
+	    // ================= START STRUCTURE ==================
+	case START_STRUCTURE:
+	    StructureType structureType = _action.getStructureType();
+	    _hhld.addStructure(new Structure(structureType));
+	    return false;
 
 	default:
 	    System.err.println("ERROR: ActionHandler could not apply action of type " + _action.getActionType());

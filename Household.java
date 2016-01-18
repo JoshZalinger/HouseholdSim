@@ -153,31 +153,25 @@ public class Household {
 	return remainingLabor;
     } //end
 
-
     public AI getAI() {
 	return ai;
     } //end
-
 
     public int getInventoryMax() {
 	return inventoryMax;
     } //end
 
-
     public int getInventoryUsed() {
 	return inventoryItems.size();
     } //end
-
 
     public int getInventoryFree() {
 	return inventoryMax - inventoryItems.size();
     } //end
 
-
     public ArrayList<Item> getInventoryItems() {
 	return inventoryItems;
     } //end
-
 
     public Item getItem(Item _item) {
 	for (int i=0; i<inventoryItems.size(); i++) {
@@ -188,7 +182,6 @@ public class Household {
 	return null;
     } //end
 
-
     public Boolean removeItem(Item _item) {
 	if (_item == null) {
 	    return false;
@@ -197,16 +190,13 @@ public class Household {
 	return inventoryItems.remove(_item);
     } //end
 
-
     public int getHunger() {
 	return hunger;
     } //end
 
-
     public void setHunger(int h) {
 	hunger = h;
     } //end
-
 
     // decreases hunger by 1, to a minimum of 0
     public void decrementHunger() {
@@ -215,36 +205,29 @@ public class Household {
 	}
     } //end
 
-
     public int getVitaminStat(Vitamin v) {
 	return vitaminStats[vitaminMap.get(v)];
     } //end
-
 
     public void setVitaminStat(Vitamin v, int value) {
 	vitaminStats[vitaminMap.get(v)] = value;
     } //end
 
-
     public int getStarvation() {
 	return starvation;
     } //end
-
 
     public void setStarvation(int _starvation) {
 	starvation = _starvation;
     } //end
 
-
     public String getInventoryPrettyString() {
 	return Item.getInventoryPrettyString(inventoryItems);
     } //end
 
-
     public boolean isHumanControlled() {
 	return ai instanceof HumanUserAI;
     } //end
-
 
     public Food getFoodItem(FoodType _type) {
 	for(Item i: inventoryItems) {
@@ -258,16 +241,13 @@ public class Household {
 	return null;
     } //end
 
-
     public int getLevel() {
 	return level;
     } //end
 
-
     public int getTurnsAtNextLuxuryLevel() {
 	return turnsAtNextLuxuryLevel;
     } //end
-
 
     public Structure getStructure(StructureType _type) {
 	for(Structure s: structures) {
@@ -278,16 +258,17 @@ public class Household {
 	return null;
     } //end
 
-
     public ArrayList<Structure> getStructures() {
 	return structures;
     } //end
 
+    public void addStructure(Structure _structure) {
+	structures.add(_structure);
+    } //end
 
     public boolean hasSkill(Skill _skill) {
 	return skills.contains(_skill);
     } //end
-
 
     public void setAI(AI _ai) {
 	ai = _ai;
