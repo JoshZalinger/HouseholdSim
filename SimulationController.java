@@ -33,19 +33,8 @@ public class SimulationController {
 	int pop = config.getPopulation();
 	households = new ArrayList<Household>();
 	for(int i = 0; i < pop; i++) {
-	    AI ai;
-	    if (i == 0 && config.isHumanUser()) {
-		ai = new HumanUserAI();
-	    }
-	    else {
-		ai = new DefaultAI();
-	    }
-	    Household hhld = new Household(ai);
+	    Household hhld = new Household(new DefaultAI());
 	    households.add(hhld);
-
-	    if(i == 0 && config.isDayInLife()) {
-		dayInLifeHousehold = hhld;
-	    }
 	}
 
 	turnNumber = 0;
@@ -57,6 +46,14 @@ public class SimulationController {
 
 
     private void doTurn() {
+	// Start human user / dayinlife .
+	if(config.isHumanUser() && config.getHumanUserDelay() == turnNumber && households.size() > 0) {
+	    households.get(0).setAI(new HumanUserAI());
+	}
+	if(config.isDayInLife() && config.getDayInLifeDelay() == turnNumber && households.size() > 0) {
+	    dayInLifeHousehold = households.get(0);
+	}
+
 	ArrayList<Household> householdsCopy = new ArrayList<Household>();
 	householdsCopy.addAll(households);
 	Simulation.ui.simpleMessage(" === Turn " + turnNumber + " ===");
