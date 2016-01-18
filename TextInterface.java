@@ -126,7 +126,7 @@ public class TextInterface implements UI {
 	System.out.println("Labor:\t\t" + _hhld.getRemainingLabor() + " / " + _hhld.getMaxLabor());
 	System.out.println("Inventory:\t" + _hhld.getInventoryPrettyString());
 	if(_hhld.getTurnsAtNextLuxuryLevel() > 0) {
-	    System.out.println("Turns ar next luxury level: " + _hhld.getTurnsAtNextLuxuryLevel());
+	    System.out.println("Turns at next luxury level: " + _hhld.getTurnsAtNextLuxuryLevel());
 	}
     } //end
 

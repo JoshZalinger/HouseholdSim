@@ -11,10 +11,12 @@ public class SimulationConfig {
 	defaultValues = new HashMap();
 	defaultValues.put("population", 100);
 	defaultValues.put("humanuser", false);
+	defaultValues.put("humanuserdelay", 0);
 	defaultValues.put("foragejobslots", 800);
 	defaultValues.put("foragechance", 0.5);
 	defaultValues.put("foragefoodtype", "corn");
 	defaultValues.put("dayinlife", false);
+	defaultValues.put("dayinlifedelay", 0);
 	defaultValues.put("step", 10); //how many turns between pause
 	defaultValues.put("starvationmax", 20);
 	defaultValues.put("birthrate", .001);
@@ -108,10 +110,17 @@ public class SimulationConfig {
 	return ((Integer)values.get("gathersticksjobslots")).intValue();
     } //end
 
-
     public double getGatherSticksChance() {
 	return ((Double)values.get("gatherstickschance")).doubleValue();
     } //end
 
+    public int getHumanUserDelay() {
+	return ((Integer)values.get("humanuserdelay")).intValue();
+    } //end
+
+    public int getDayInLifeDelay() {
+	return ((Integer)values.get("dayinlifedelay")).intValue();
+    } //end
+  
 
 } //end

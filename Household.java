@@ -267,4 +267,9 @@ public class Household {
     } //end
 
 
+    public void setAI(AI _ai) {
+	ai = _ai;
+    } //end
+
+
 } //end class
