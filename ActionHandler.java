@@ -57,6 +57,10 @@ public class ActionHandler {
 	case END_TURN:
 	    return true;
 
+	    // ================= END TURN ==================
+	case EAT:
+	    return false;
+
 	    // ================= PUBLIC JOB =================
 	case PUBLIC_JOB:
 	    JobType jobType = _action.getJobType();

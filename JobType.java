@@ -15,6 +15,16 @@ public enum JobType {
     } //end
 
 
+    public static JobType parse(String _name) {
+	for(JobType jb: values()) {
+	    if(jb.toString().toLowerCase().equals(_name)) {
+		return jb;
+	    }
+	}
+	return null;
+    } //end
+
+
     public int getLaborCost() {
 	return laborCost;
     } //end getLaborCost

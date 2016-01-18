@@ -1,6 +1,7 @@
 // Basic ASCI, in-terminal user interface
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class TextInterface implements UI {
@@ -33,34 +34,54 @@ public class TextInterface implements UI {
     } //end
 
 
-    public Action promptForHouseholdAction(Household _hhld) {
+    public void promptForHouseholdAction(Household _hhld, ArrayList<Action> actionList) {
 	while(true) {
 	    System.out.print("> ");
 	    String rawCommand = kb.nextLine().trim().toLowerCase();
 	    Scanner input = new Scanner(rawCommand);
+	    Action action;
 
 	    if (!(input.hasNext())) {
 		simpleMessage("No command");
 		continue;
 	    }
 
-	    Action action = Action.parse(input.next());
-	    if (action != null) {
-		// TODO: validate the command
-		switch(action.getActionType()) {
+	    ActionType actionType = ActionType.parse(input.next());
+	    if (actionType != null) {
+		switch(actionType) {
 		case EAT:
 		    if (!(input.hasNext())) {
 			simpleMessage("No item specified to eat");
 			continue;
 		    }
 		    Food food = Food.parse(input.next());
-		    action.setItem(food);
+		    action = new Action(actionType, food);
+		    break;
+		case PUBLIC_JOB:
+		    if (!(input.hasNext())) {
+			simpleMessage("No job type specified");
+			continue;
+		    }
+		    JobType jobType = JobType.parse(input.next());
+		    action = new Action(actionType, jobType);
+		    break;
 		default:
+		    action = new Action(actionType);
 		}
 
-		return action;
+		if (input.hasNext()) {
+		    int repeat = Integer.parseInt(input.next());
+		    for (int i=0; i<repeat; i++) {
+			actionList.add(action);
+		    }
+		} else {
+		    actionList.add(action);
+		}
+
+		return;
+	    } else {
+		simpleMessage("Invalid command");
 	    }
-	    simpleMessage("Invalid command");
 	}
     } //end
 
