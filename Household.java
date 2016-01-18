@@ -272,4 +272,14 @@ public class Household {
     } //end
 
 
+    public boolean hasSkill(Skill _skill) {
+	for(Skill s: skills) {
+	    if(s == _skill) {
+		return true;
+	    }
+	}
+	return false;
+    } //end
+
+
 } //end class

@@ -26,8 +26,4 @@ public class MaterialItem extends Item {
     } //end
 
 
-    public String toString() {
-	return type.toString();
-    } //end
-
 } //end class

@@ -21,6 +21,11 @@ public abstract class Item {
     } //end
 
 
+    public String toString() {
+	return name;
+    } //end
+
+
     public int getSize() {
 	return size;
     } //end

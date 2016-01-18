@@ -11,3 +11,4 @@ Implement penalties from starvation (reset luxury count, lock skill actions).
 
 unused property is lost
 
+Make DefaultAI become toolmakers, build tools.

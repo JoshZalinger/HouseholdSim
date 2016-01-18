@@ -40,6 +40,16 @@ public class ActionHandler {
 	    // TODO: make sure hhld's inventory is not full
 	    return null;
 
+	    // =============== CRAFT A TOOL =================
+	case CRAFT_TOOL:
+	    if(!_hhld.hasSkill(Skill.TOOLMAKER)) {
+		return "ActionHandler error for CRAFT_TOOL: hhld does not have TOOLMAKER skill.";
+	    }
+	    if(!InventoryUtil.householdHasMaterials(_hhld, _action.getToolType().getMaterialCost())) {
+		return "ActionHandler error for CRAFT_TOOL: hhld does not have material cost.";
+	    }
+	    return null;
+
 	case END_TURN:
 	    return null;
 
@@ -57,7 +67,7 @@ public class ActionHandler {
 	case END_TURN:
 	    return true;
 
-	    // ================= END TURN ==================
+	    // ================= EAT ==================
 	case EAT:
 	    return false;
 
@@ -66,6 +76,13 @@ public class ActionHandler {
 	    JobType jobType = _action.getJobType();
 	    _controller.claimPublicJobSlot(jobType);
 	    return ActionHandler.applyJobType(_hhld, jobType, _controller);
+
+	    // =============== CRAFT TOOL =================
+	case CRAFT_TOOL:
+	    InventoryUtil.subtractFromInventory(_hhld, _action.getToolType().getMaterialCost());
+	    ToolItem tool  = new ToolItem(_action.getToolType());
+	    _hhld.addToInventory(tool);
+	    return false;
 
 	default:
 	    System.err.println("ERROR: ActionHandler could not apply action of type " + _action.getActionType());
