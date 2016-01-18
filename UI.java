@@ -24,4 +24,7 @@ public interface UI {
     public void onHouseholdBeginTurn(Household _hhld);
 
 
+    public void onHouseholdChooseAction(Household _hhld, SimulationController _ui);
+
+
 } //end interface

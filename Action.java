@@ -38,6 +38,10 @@ public class Action {
 
     // =================== ACCESSORS =====================
 
+    public String toString() {
+	return actionType.toString();
+    } //end
+
     public ActionType getActionType() {
 	return actionType;
     } //end getActionType

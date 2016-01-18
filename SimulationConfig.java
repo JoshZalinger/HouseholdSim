@@ -14,6 +14,7 @@ public class SimulationConfig {
 	defaultValues.put("foragejobslots", 800);
 	defaultValues.put("foragechance", 0.5);
 	defaultValues.put("foragefoodtype", "corn");
+	defaultValues.put("dayinlife", false);
     } //end static block
 
 
@@ -80,6 +81,10 @@ public class SimulationConfig {
 
     public FoodType getForageFoodType() {
 	return FoodType.parse(values.get("foragefoodtype").toString());
+    } //end
+
+    public boolean isDayInLife() {
+	return ((Boolean)values.get("dayinlife")).booleanValue();
     } //end
 
 
